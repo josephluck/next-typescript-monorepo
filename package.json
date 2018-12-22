@@ -1,0 +1,14 @@
+{
+  "name": "acme",
+  "version": "1.0.0",
+  "description": "An example of a next.js monorepo with typescript",
+  "main": " ",
+  "repository": "git@github.com:josephluck/next-typescript-monorepo.git",
+  "author": "Joseph Luck",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "blog",
+    "api"
+  ]
+}
