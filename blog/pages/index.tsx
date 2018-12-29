@@ -1,8 +1,9 @@
 import * as React from "react";
 import { NextStatelessComponent } from "next";
 import Link from "next/link";
-import { Models } from "@acme/api";
+import { Models } from "@acme/api/server";
 import { apiClient } from "@acme/api/client";
+import { Layout } from "@acme/design/components";
 
 interface Props {
   posts: Models.Post[];
@@ -10,8 +11,7 @@ interface Props {
 
 const BlogIndex: NextStatelessComponent<Props> = ({ posts }) => {
   return (
-    <div>
-      <h1>Acme's blog</h1>
+    <Layout>
       <ul>
         {posts.map(post => (
           <li key={post.id}>
@@ -21,7 +21,7 @@ const BlogIndex: NextStatelessComponent<Props> = ({ posts }) => {
           </li>
         ))}
       </ul>
-    </div>
+    </Layout>
   );
 };
 

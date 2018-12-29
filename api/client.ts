@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Models } from ".";
+import { Models } from "./server";
 
 const baseURL = "http://localhost:5000";
 

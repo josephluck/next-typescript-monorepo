@@ -7,8 +7,12 @@
   "author": "Joseph Luck",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "postinstall": "sed -i 's/followSymlinks: false/followSymlinks: true/g' node_modules/watchpack/lib/DirectoryWatcher.js"
+  },
   "workspaces": [
     "blog",
+    "design",
     "api"
   ]
 }

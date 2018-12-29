@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@acme/api": "*",
+    "@acme/design": "*",
     "@types/next": "^7.0.5",
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
@@ -18,6 +19,7 @@
     "next-plugin-transpile-modules": "^1.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "ts-node": "^7.0.1",
     "typescript": "^3.2.2"
   }
 }
