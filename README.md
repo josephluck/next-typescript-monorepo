@@ -1,4 +1,4 @@
-# Next + TypeScript + Lerna
+# Next + TypeScript + Yarn monorepo
 
 This has:
 
