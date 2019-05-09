@@ -8,7 +8,10 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "postinstall": "sed -i 's/followSymlinks: false/followSymlinks: true/g' node_modules/watchpack/lib/DirectoryWatcher.js"
+    "postinstall": "rexreplace \"followSymlinks: false\" \"followSymlinks: true\" ./node_modules/watchpack/lib/DirectoryWatcher.js -V"
+  },
+  "devDependencies": {
+    "rexreplace": "^4.1.1"
   },
   "workspaces": [
     "blog",
