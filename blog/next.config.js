@@ -1,4 +1,5 @@
 const path = require("path");
+const withPlugins = require('next-compose-plugins');
 const withCustomBabelConfig = require("next-plugin-custom-babel-config");
 const withTypescript = require("@zeit/next-typescript");
 const withTranspileModules = require("next-plugin-transpile-modules");
@@ -19,13 +20,14 @@ function withCustomWebpack(config = {}) {
   return config
 }
 
-module.exports = withCustomWebpack(
-  withCustomBabelConfig(
-    withTypescript(
-      withTranspileModules({
-        transpileModules: ["@acme"],
-        babelConfigFile: path.resolve("../babel.config.js")
-      })
-    )
-  )
-);
+const plugins = [
+  [withTranspileModules, { transpileModules: ["@acme"] }],
+  [withTypescript],  
+  [withCustomBabelConfig, { babelConfigFile: path.resolve("../babel.config.js") }],  
+  [withCustomWebpack],    
+];
+
+const config = {
+};
+
+module.exports = withPlugins(plugins, config);
