@@ -1,33 +1,36 @@
 const path = require("path");
-const withPlugins = require('next-compose-plugins');
+const withPlugins = require("next-compose-plugins");
 const withCustomBabelConfig = require("next-plugin-custom-babel-config");
-const withTypescript = require("@zeit/next-typescript");
-const withTranspileModules = require("next-plugin-transpile-modules");
+const withTranspileModules = require("next-transpile-modules");
 
 function withCustomWebpack(config = {}) {
   const { webpack } = config;
 
   config.webpack = (config, ...rest) => {
-    
-    // Workaround for issue https://github.com/wellcometrust/next-plugin-transpile-modules/issues/11
-    // TODO: upgrade next-plugin-transpile-modules when the issue is fixed
-    // TODO: remove this workaround when next-plugin-transpile-modules is upgraded
-    config.externals = config.externals || [];
+    const babelRule = config.module.rules.find((rule) =>
+      rule.use && Array.isArray(rule.use)
+        ? rule.use.find((u) => u.loader === "next-babel-loader")
+        : rule.use.loader === "next-babel-loader"
+    );
+    if (babelRule) {
+      babelRule.include.push(path.resolve("../"));
+    }
 
-    return webpack(config, ...rest)
-  }
+    return webpack(config, ...rest);
+  };
 
-  return config
+  return config;
 }
 
 const plugins = [
   [withTranspileModules, { transpileModules: ["@acme"] }],
-  [withTypescript],  
-  [withCustomBabelConfig, { babelConfigFile: path.resolve("../babel.config.js") }],  
-  [withCustomWebpack],    
+  [
+    withCustomBabelConfig,
+    { babelConfigFile: path.resolve("../babel.config.js") },
+  ],
+  [withCustomWebpack],
 ];
 
-const config = {
-};
+const config = {};
 
 module.exports = withPlugins(plugins, config);

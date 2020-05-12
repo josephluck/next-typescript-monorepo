@@ -1,15 +1,15 @@
 import * as React from "react";
-import { NextStatelessComponent } from "next";
 import Link from "next/link";
 import { Models } from "@acme/api/server";
 import { apiClient } from "@acme/api/client";
 import { Layout } from "@acme/design/components";
+import { NextPage } from "next";
 
 interface Props {
   posts: Models.Post[];
 }
 
-const BlogIndex: NextStatelessComponent<Props> = ({ posts }) => {
+const BlogIndex: NextPage<Props> = ({ posts }) => {
   return (
     <Layout>
       <ul>
